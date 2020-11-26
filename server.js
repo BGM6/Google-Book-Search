@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 //Mongoose Connection
-const uri = process.env.mongoose.connection;
+const uri = process.env.MONGO_URI;
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true});
 
 const connection = mongoose.connection;
