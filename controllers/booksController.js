@@ -32,10 +32,10 @@ module.exports = {
             .catch(err => res.status(400).json('Error: ' + err))
     },
 
-    remove: function (req, res) {
+    delete: function (req, res) {
         db.Book
             .findById(req.params.id)
-            .then(dbBook => dbBook.remove)
+            .then(dbBook => dbBook.deleteOne)
             .then(dbBook => res.send(dbBook))
             .catch(err => res.status(400).json('Error' + err))
 
