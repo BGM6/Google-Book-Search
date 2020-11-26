@@ -1,14 +1,21 @@
-const router = require('express').Router;
-const booksController = require('../../controllers/booksController');
+const router = require('express').Router();
+const {
+    findAll,
+    create,
+    findById,
+    update,
+    remove,
+
+} = require('../../controllers/booksController');
 
 router.route('/')
-.get()
-.post();
+.get(findAll)
+.post(create);
 
 router.route('/:id')
-    .get()
-    .put()
-    .delete();
+    .get(findById)
+    .put(update)
+    .delete(remove)
 
 
-module.exports= router;
+module.exports = router;

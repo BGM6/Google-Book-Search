@@ -1,35 +1,44 @@
 const db = require('../models')
+
 //Methods to query books to be exported
 module.exports = {
-    findAllQuery: function (req, res) {
-        db.Book.find(req.query)
-            .then(dbBooks => res.json(dbBooks))
+
+    findAll: function (req, res) {
+        db.Book
+            .find(req.query)
+            .sort({ date: -1 })
+            .then(dbBook => res.json(dbBook))
             .catch(err => res.status(400).json('Error: ' + err));
     },
 
-    findByIdQuery: function (req, res) {
-        db.Book.findById(req.params._id)
-            .then(dbBooks => res.json(dbBooks))
+    findById: function (req, res) {
+        db.Book
+            .findById(req.params._id)
+            .then(dbBook => res.json(dbBook))
             .catch(err => res.status(400).json('Error: ' + err));
     },
 
-    createQuery: function (req, res) {
-        db.Book.create(req.body)
-            .then(dbBooks => res.json(dbBooks))
+    create: function (req, res) {
+        db.Book
+            .create(req.body)
+            .then(dbBook => res.json(dbBook))
             .catch(err => res.status(400).json('Error: ' + err));
     },
 
-    updateQuery: function (req, res) {
-        db.Book.findOneAndUpdate({_id: req.params._id}, req.body)
-            .then(dbBooks => res.json(dbBooks))
+    update: function (req, res) {
+        db.Book
+            .findOneAndUpdate({_id: req.params.id}, req.body)
+            .then(dbBook => res.json(dbBook))
             .catch(err => res.status(400).json('Error: ' + err))
     },
 
-    removeQuery: function (req, res) {
-        db.Book.findById(req.params._id)
-            .then(dbBooks => dbBooks.remove)
-            .then(dbBooks => res.send(dbBooks))
+    remove: function (req, res) {
+        db.Book
+            .findById(req.params.id)
+            .then(dbBook => dbBook.remove)
+            .then(dbBook => res.send(dbBook))
             .catch(err => res.status(400).json('Error' + err))
 
     },
 };
+
