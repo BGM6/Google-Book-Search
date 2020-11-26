@@ -1,5 +1,4 @@
 const db = require('../models')
-
 //Methods to query books to be exported
 module.exports = {
     findAllQuery: function (req, res) {
