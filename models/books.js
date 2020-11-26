@@ -1,3 +1,4 @@
+//This file will be required for the book controller
 const { Schema, model} = require('mongoose');
 
 const bookSchema = new Schema({
@@ -8,7 +9,7 @@ const bookSchema = new Schema({
     image: {type: String, required: true},
     googleId: { type: String, required: true, unique: true },
 
-})
+});
 
 
 const Books = model('Books', bookSchema);
