@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const routes = require('./routes')
 const cors = require('cors');
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -25,8 +26,8 @@ connection.once('open', () => {
     console.log('MongoDB database connection established');
 });
 
-//ROUTES GO HERE
-
+//ROUTES Created in the Routes folder are used here
+app.use(routes);
 
 //Express Server
 app.listen(PORT, () => {
