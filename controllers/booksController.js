@@ -35,7 +35,7 @@ module.exports = {
     remove: function (req, res) {
         db.Book
             .findById(req.params.id)
-            .then(dbBook => dbBook.deleteOne)
+            .then(dbBook => dbBook.remove)
             .then(dbBook => res.send(dbBook))
             .catch(err => res.status(400).json('Error' + err))
 
