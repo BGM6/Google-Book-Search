@@ -7,7 +7,7 @@ const SearchResult = props => {
         <div className="card">
             <div className="card-body player">
                 <div className="article">
-                    <h3>Search Results</h3>
+                    <h3 style={{color: 'white'}}>Search Results</h3>
                 </div>
             </div>
         </div>

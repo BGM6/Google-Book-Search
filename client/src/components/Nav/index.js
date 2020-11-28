@@ -2,9 +2,9 @@ import React from "react";
 
 function Nav() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-primary bg-primary">
+        <nav id="mainNav" className="navbar navbar-expand-lg navbar-primary">
             <a className="navbar-brand" href="/">
-                <h2 className="text-white">Google Book Search</h2>
+                <h2 className="text-white">Book Search</h2>
             </a>
             <div id="navbarNav">
                 <ul className="navbar-nav">
