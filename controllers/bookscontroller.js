@@ -1,29 +1,44 @@
-const db = require("../models");
+const db = require('../models')
 
+//Methods to query books to be exported
 module.exports = {
-    findAllSaved: (req, res) => {
-        db.SavedBooks
-            .find()
-            .then(function(result){
-                res.json(result)
-            }).catch(err => res.status(422).json(err));
+
+    findAllBooks: function (req, res) {
+        db.Book
+            .find(req.query)
+            .sort({ date: -1 })
+            .then(dbBook => res.json(dbBook))
+            .catch(err => res.status(400).json('Error: ' + err));
     },
-    create: (req, res) => {
-        db.SavedBooks
-            .create({
-                title: req.body.title,
-                link: req.body.link,
-                thumbnail: req.body.thumbnail,
-                author: req.body.author,
-                description: eq.body.description,
-                key: req.body.key
-            }).then(res.end())
+
+    findBookById: function (req, res) {
+        db.Book
+            .findById(req.params._id)
+            .then(dbBook => res.json(dbBook))
+            .catch(err => res.status(400).json('Error: ' + err));
     },
-    remove: (req, res) => {
-        db.SavedBooks
-            .findById({ _id: req.params.id })
-            .then(dbModel => dbModel.remove())
-            .then(dbModel=> res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    }
+
+    create: function (req, res) {
+        db.Book
+            .create(req.body)
+            .then(dbBook => res.json(dbBook))
+            .catch(err => res.status(400).json('Error: ' + err));
+    },
+
+    updateOne: function (req, res) {
+        db.Book
+            .findOneAndUpdate({_id: req.params.id}, req.body)
+            .then(dbBook => res.json(dbBook))
+            .catch(err => res.status(400).json('Error: ' + err))
+    },
+
+    remove: function (req, res) {
+        db.Book
+            .findById(req.params.id)
+            .then(dbBook => dbBook.remove)
+            .then(dbBook => res.send(dbBook))
+            .catch(err => res.status(400).json('Error' + err))
+
+    },
 };
+
