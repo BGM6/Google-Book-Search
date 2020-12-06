@@ -4,7 +4,7 @@ import "./style.css";
 // This component exports both the List and ListItem components
 
 export const List = ({ children }) => (
-  <ul className="list-group">
+  <ul id="listBooks" className="list-group">
     {children}
   </ul>
 );
