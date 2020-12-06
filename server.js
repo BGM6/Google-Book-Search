@@ -1,35 +1,31 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const routes = require('./routes')
-const cors = require('cors');
-const PORT = process.env.PORT || 5000;
-const app = express();
+const express = require("express");
 
-//Middleware
-app.use(cors());
-require('dotenv').config();
+const mongoose = require("mongoose");
+const routes = require("./routes");
+const app = express();
+const PORT = process.env.PORT || 3001;
 
 // Configure body parsing for AJAX requests
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// Serve up static assets (For heroku)
+// Serve up static assets
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
+  app.use(express.static("client/build"));
 }
-//Mongoose Connection
-const uri = process.env.MONGO_URI;
-mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true});
 
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log('MongoDB database connection established');
-});
-
-//ROUTES Created in the Routes folder are used here
+// Add routes, both API and view
 app.use(routes);
 
-//Express Server
-app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT} at http://localhost:${PORT}`)
-});
+// Connect to the Mongo DB
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb+srv://bgm6:jobelle28@cluster0.npszk.mongodb.net/googlebooksearch?retryWrites=true&w=majority",
+  {
+    useCreateIndex: true,
+    useNewUrlParser: true
+  }
+);
+
+// Start the API server
+app.listen(PORT, () =>
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
+);
