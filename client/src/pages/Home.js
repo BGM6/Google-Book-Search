@@ -32,7 +32,7 @@ class Home extends Component {
       .catch(() =>
         this.setState({
           books: [],
-          message: "No New Books Found, Try a Different Query"
+          message: "Sorry No New Books Found, Try a Different Search"
         })
       );
   };
@@ -65,7 +65,7 @@ class Home extends Component {
               <h1 className="text-center">
                 <strong style={{fontSize: '40px'}}>Google Books Search</strong>
               </h1>
-              <h2 style={{fontSize: '30px'}} className="text-center">Search for and Save Books of Interest.</h2>
+              <h2 style={{fontSize: '30px'}} className="text-center">Bill Gates reads a book a week...</h2>
             </Jumbotron>
           </Col>
           <Col size="md-12">
